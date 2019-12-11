@@ -1,0 +1,22 @@
+
+service: redis-cluster
+
+provider:
+  name: aws
+  runtime: python3.7
+  stage: dev
+  region: us-west-1
+  versionFunctions: false
+  memorySize: 128
+
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - http:
+          path: echo/hello
+          method: get
+
+plugins:
+  - serverless-plugin-simulate
+  - serverless-python-requirements
